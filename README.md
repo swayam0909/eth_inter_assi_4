@@ -1,61 +1,40 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+# DegenToken Smart Contract
 
-contract DegenToken {
-    string public name = "Degen";
-    string public symbol = "DGN";
-    uint public totalSupply;
-    address public owner;
-    string public Redemption_Status;
+This repository contains the smart contract for the DegenToken (DGN), implemented in Solidity.
 
-    mapping(address => uint) public balanceOf;
+## Overview
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function.");
-        _;
-    }
+DegenToken is a basic ERC20 token with additional functionalities such as minting, burning, and a redemption feature.
 
-    constructor(uint initialSupply) {
-        totalSupply = initialSupply;
-        balanceOf[msg.sender] = totalSupply;
-        owner = msg.sender;
-    }
+- **Name**: DegenToken
+- **Symbol**: DGN
+- **Total Supply**: Defined during contract deployment
 
+## Features
 
-    function transfer(address to, uint Amount) external returns (bool) {
-        require(to != address(0), "Invalid recipient address.");
-        require(Amount <= balanceOf[msg.sender], "Insufficient balance.");
+1. **Transfer Tokens**: Users can transfer DGN tokens to other addresses.
+2. **Mint Tokens**: Only the contract owner can mint new DGN tokens.
+3. **Burn Tokens**: Users can burn their own DGN tokens, reducing the total supply.
+4. **Redemption**: Allows users to redeem tokens for prizes, implemented with a `Redeem` function.
 
-        balanceOf[msg.sender] -= Amount;
-        balanceOf[to] += Amount;
-        return true;
-    }
+## Prerequisites
 
+- Understanding of Ethereum and Solidity
+- Development environment set up with Solidity compiler (e.g., Remix, Truffle)
 
-    function mint(address to, uint Amount) external onlyOwner {
-        require(to != address(0), "Invalid recipient address.");
-        totalSupply += Amount;
-        balanceOf[to] += Amount;
-    }
+## Usage
 
-    function burn(uint Amount) external {
-        require(Amount <= balanceOf[msg.sender], "Insufficient balance.");
+1. **Deployment**: Deploy the smart contract to an Ethereum-compatible blockchain.
+2. **Interact**: Use any Ethereum wallet or script to interact with the deployed contract.
+   - Transfer tokens
+   - Mint new tokens (owner only)
+   - Burn tokens
+   - Redeem tokens for prizes
 
-        balanceOf[msg.sender] -= Amount;
-        totalSupply -= Amount;
-    }
+## Getting Started
 
-    function transferFrom(address from, address to, uint Amount) external returns (bool) {
-        require(to != address(0), "Invalid recipient address.");
-        require(Amount <= balanceOf[from], "Insufficient balance.");
-        balanceOf[from] -= Amount;
-        balanceOf[to] += Amount;
-        return true;
-    }
+To get started with this repository:
 
-    function Redeem(uint prizeCost) external {
-        require(balanceOf[msg.sender] >= prizeCost, "Insufficient balance for the prize.");
-        balanceOf[msg.sender] -= prizeCost;
-        Redemption_Status = "Redemption successful!";        
-    }
-}
+```bash
+git clone <repository-url>
+cd DegenToken
