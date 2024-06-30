@@ -38,3 +38,12 @@ To get started with this repository:
 ```bash
 git clone <repository-url>
 cd DegenToken
+```
+## Authors
+
+Swayam Raj Singh
+
+[swayam](https://academy.metacrafters.io/profile)
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
