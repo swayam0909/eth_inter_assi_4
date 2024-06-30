@@ -2,8 +2,8 @@
 pragma solidity ^0.8.18;
 
 contract DegenToken {
-    string public name = "Degen";
-    string public symbol = "DGN";
+    string public name = "Dogesh";
+    string public symbol = "Dogo";
     uint public totalSupply;
     address public owner;
     string public Redemption_Status;
